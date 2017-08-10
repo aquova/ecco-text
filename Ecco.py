@@ -1,5 +1,6 @@
-# This is a program that will take in user input and output an image of that text in the style of the text in 'Ecco the Dolphin'
+# Ecco the Dolphin Text Generator
 # Written by Austin Bricker, 2017
+# Generates a .png image of entered text in the style of Ecco the Dolphin
 
 import os 
 from PIL import Image
