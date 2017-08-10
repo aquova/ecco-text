@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
         </script>
-        <script src="ecco.js"></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -15,10 +14,10 @@
             <p>Are you a big fan of the classic Sega Genesis game Ecco the Dolphin? Don't you wish you had a way to edit the text they use in the game to make it say anything you wanted? Well my friend, worry no longer, the Ecco the Dolphin Text Generator is here! Enter your text in the box below, click submit, and view your masterpiece.</p> 
         </div>
 
-        <canvas id="eccoCanvas">Test.</canvas>
-        <!-- <img id='eccoBkg' class='center-block' src="https://i.imgur.com/wb9cCBQ.png" /> -->
-        <img id='eccoBkg' class='center-block' src="./EccoBackground.png" />
+        <canvas id="eccoCanvas" class='center-block' width='320' height='240'>Your browser does not support the HTML5 canvas tag.</canvas>
+        <img id='eccoBkg' class='center-block' src="./EccoBackground.png" style="display: none;"/>
         <br/>
         <input type="text" id="eccoText" class='center-block'>
+        <script src="ecco.js"></script>
     </body>
 </html>

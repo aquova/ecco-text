@@ -4,7 +4,7 @@
 import os 
 from PIL import Image
 
-def text(sentence):
+def main(sentence):
     max_row_len = 18
     x_margin = 16
     y_margin = 26
@@ -52,3 +52,7 @@ def text(sentence):
     out_path = os.path.join(os.path.dirname(__file__), 'ecco.png')
     bg.save(out_path)
     bg.close()
+
+if __name__ == "__main__":
+    text = input("Enter a phrase to generate: ")
+    main(text)
