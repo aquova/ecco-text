@@ -43,6 +43,7 @@ function drawEcco() {
 			if (letter == " "){ // If letter is a space
 				x_pos += x_margin;
 			} else {
+				console.log(letter);
 				// Check if letter is one of the usable characters
 				// If not, put a message on the page
 				if (valid_char.indexOf(letter) >= 0) {
@@ -56,7 +57,7 @@ function drawEcco() {
 
 					// Convert letter into corresponding image, paste onto background
 					var latest_letter = new Image();
-				    latest_letter.src = './EccoFont/' + letter + '.png';
+					latest_letter.src = './EccoFont/' + letter + '.png';
 					ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
 					// Shift over letter length plus small margin
 					x_pos += latest_letter.width + 2;
