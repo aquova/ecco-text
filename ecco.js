@@ -31,7 +31,7 @@ function drawEcco() {
 	var text = document.getElementById('eccoText').value;
 	text = text.toUpperCase();
 	var lines = setLines(ctx, text, max_rows, x_margin, y_margin);
-
+	var valid_char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.,'?:-".split('');
 	var row_num = 0;
 	// Finds Y starting position
 	// Needs to be offset of midpoint by number of lines
@@ -47,17 +47,21 @@ function drawEcco() {
 					letter = 'dot';
 				} else if (letter == ':') { // If letter is a colon
 					letter = 'colon';
-				} else if (letter == '?') {
-					// This isn't needed in the Python program
-					// Unknown why it's needed here
+				} else if (letter == '?') { // If letter is a ?
 					letter = 'question';
 				}
-				// Convert letter into corresponding image, paste onto background
-				var latest_letter = new Image();
-				latest_letter.src = './EccoFont/' + letter + '.png';
-				ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
-				// Shift over letter length plus small margin
-				x_pos += latest_letter.width + 2;
+				// Check if letter is one of the usable characters
+				// If not, put a message on the page
+				if (valid_char.indexOf(letter) >= 0) {
+					// Convert letter into corresponding image, paste onto background
+					var latest_letter = new Image();
+				    latest_letter.src = './EccoFont/' + letter + '.png';
+					ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
+					// Shift over letter length plus small margin
+					x_pos += latest_letter.width + 2;
+				} else {
+					document.getElementById("error").innerHTML="I'm sorry, but " + letter + " is not a valid character";
+				}
 			}
 		}
 		// Shift down a row
