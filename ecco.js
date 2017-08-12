@@ -43,7 +43,6 @@ function drawEcco() {
 			if (letter == " "){ // If letter is a space
 				x_pos += x_margin;
 			} else {
-				console.log(letter);
 				// Check if letter is one of the usable characters
 				// If not, put a message on the page
 				if (valid_char.indexOf(letter) >= 0) {
