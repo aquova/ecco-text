@@ -44,11 +44,11 @@ function drawEcco() {
 				x_pos += x_margin;
 			} else {
 				if (letter == "."){ // If letter is a period
-					letter = 'dot';
+					letter = 'DOT';
 				} else if (letter == ':') { // If letter is a colon
-					letter = 'colon';
+					letter = 'COLON';
 				} else if (letter == '?') { // If letter is a ?
-					letter = 'question';
+					letter = 'QUESTION';
 				}
 				// Check if letter is one of the usable characters
 				// If not, put a message on the page
