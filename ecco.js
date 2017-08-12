@@ -43,16 +43,17 @@ function drawEcco() {
 			if (letter == " "){ // If letter is a space
 				x_pos += x_margin;
 			} else {
-				if (letter == "."){ // If letter is a period
-					letter = 'DOT';
-				} else if (letter == ':') { // If letter is a colon
-					letter = 'COLON';
-				} else if (letter == '?') { // If letter is a ?
-					letter = 'QUESTION';
-				}
 				// Check if letter is one of the usable characters
 				// If not, put a message on the page
 				if (valid_char.indexOf(letter) >= 0) {
+					if (letter == "."){ // If letter is a period
+						letter = 'DOT';
+					} else if (letter == ':') { // If letter is a colon
+						letter = 'COLON';
+					} else if (letter == '?') { // If letter is a ?
+						letter = 'QUESTION';
+					}
+
 					// Convert letter into corresponding image, paste onto background
 					var latest_letter = new Image();
 				    latest_letter.src = './EccoFont/' + letter + '.png';
