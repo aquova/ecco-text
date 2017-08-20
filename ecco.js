@@ -6,17 +6,19 @@
 var canvas = document.getElementById('eccoCanvas');
 ctx = canvas.getContext('2d');
 
-var max_rows = 18;
-var x_margin = 16;
-var y_margin = 26;
+const max_rows = 18;
+const x_margin = 16;
+const y_margin = 26;
 
-var img = document.getElementById('eccoBkg');
+var img = new Image();
+img.src = "./EccoBackground.png";
+// var img = document.getElementById('eccoBkg');
 var text = document.getElementById('eccoText');
 
 // Update text with every keystroke
-text.addEventListener('keydown', drawEcco);
+// text.addEventListener('keydown', drawEcco);
 text.addEventListener('keyup', drawEcco);
-text.addEventListener('change', drawEcco);
+// text.addEventListener('change', drawEcco);
 
 img.onload = function() {
 	drawEcco();
@@ -29,8 +31,10 @@ function drawEcco() {
 
 	// Separate text into lines of proper length
 	var text = document.getElementById('eccoText').value;
+	console.log("Read text: " + text)
 	text = text.toUpperCase();
 	var lines = setLines(ctx, text, max_rows, x_margin, y_margin);
+	console.log("Lines: " + lines)
 	var valid_char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.,'?:-".split('');
 	var row_num = 0;
 	// Finds Y starting position
@@ -57,7 +61,15 @@ function drawEcco() {
 					// Convert letter into corresponding image, paste onto background
 					var latest_letter = new Image();
 					latest_letter.src = './EccoFont/' + letter + '.png';
+					// if (latest_letter.complete){
+					// 	ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
+					// } else {
+					// 	latest_letter.onload = function () {
+					// 		ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
+					// 	}
+					// }
 					ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
+					console.log("image updated!")
 					// Shift over letter length plus small margin
 					x_pos += latest_letter.width + 2;
 				} else {
@@ -67,6 +79,7 @@ function drawEcco() {
 		}
 		// Shift down a row
 		row_num++;
+		console.log("I did stuff")
 		y_pos += y_margin;
 	}
 }

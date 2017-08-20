@@ -5,10 +5,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="ecco.css" type="text/css" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
         </script>
     </head>
     <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+              </button>
+              <a class="navbar-brand" href="http://aquova.github.io/">Home</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://aquova.github.io/aboutme.html">ABOUT ME</a></li>
+                <li><a href="https://aquova.github.io/ecco-text">ECCO TEXT</a></li>
+                <li><a href="http://austininaustria.wordpress.com/" target="_blank">STUDY ABROAD</a></li>
+                <li><a href="http://aquova.github.io/Aquobot">AQUOBOT</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
         <div class="container-fluid">
             <center><h1>Ecco the Dolphin Text Generator</h1></center>
             <p>Are you a big fan of the classic Sega Genesis game Ecco the Dolphin? Don't you wish you had a way to edit the text they use in the game to make it say anything you wanted? Well my friend, worry no longer, the Ecco the Dolphin Text Generator is here! Enter your text in the box below and view your masterpiece. To download, right click on the picture and choose 'Save image as...'</p> 
@@ -16,11 +39,30 @@
         </div>
 
         <canvas id="eccoCanvas" class='center-block' width='320' height='240'>Your browser does not support the HTML5 canvas tag.</canvas>
-        <img id='eccoBkg' class='center-block' src="./EccoBackground.png" style="display: none;"/>
+        <!-- <img id='eccoBkg' class='center-block' src="./EccoBackground.png" style="display: none;"/> -->
         <br/>
-        <input type="text" id="eccoText" class='center-block' placeholder="Enter text here">
+        <div class="form-group col-lg-2 col-lg-offset-5">
+            <input type="text" id="eccoText" class='center-block form-control' placeholder="Enter text here">
+        </div>
         <br/>
         <center><p id='error'></p></center>
         <script src="ecco.js"></script>
+
+        <div class="container-fluid bg-2 text-center footer slideanim">
+            <div class='row'>
+                <div class="col-sm-3">
+                    <a href="https://www.facebook.com/Austin.S.Bricker" target="_blank"><img src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png" width="30px"></a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="https://twitter.com/Aquova_" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1259px-Twitter_bird_logo_2012.svg.png" width="30px" height="30px"></a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="https://www.instagram.com/austin_bricker/" target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/instagram-2016.svg" width="30px"></a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="https://github.com/Aquova" target="_blank"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" width="30 px"></a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
