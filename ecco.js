@@ -16,9 +16,7 @@ img.src = "./EccoBackground.png";
 var text = document.getElementById('eccoText');
 
 // Update text with every keystroke
-// text.addEventListener('keydown', drawEcco);
 text.addEventListener('keyup', drawEcco);
-// text.addEventListener('change', drawEcco);
 
 img.onload = function() {
 	drawEcco();
@@ -31,10 +29,10 @@ function drawEcco() {
 
 	// Separate text into lines of proper length
 	var text = document.getElementById('eccoText').value;
-	console.log("Read text: " + text)
+	// console.log("Read text: " + text);
 	text = text.toUpperCase();
 	var lines = setLines(ctx, text, max_rows, x_margin, y_margin);
-	console.log("Lines: " + lines)
+	// console.log("Lines: " + lines);
 	var valid_char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.,'?:-".split('');
 	var row_num = 0;
 	// Finds Y starting position
@@ -57,29 +55,36 @@ function drawEcco() {
 					} else if (letter == '?') { // If letter is a ?
 						letter = 'QUESTION';
 					}
-
+					
 					// Convert letter into corresponding image, paste onto background
 					var latest_letter = new Image();
-					latest_letter.src = './EccoFont/' + letter + '.png';
-					// if (latest_letter.complete){
-					// 	ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
-					// } else {
-					// 	latest_letter.onload = function () {
-					// 		ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
-					// 	}
-					// }
-					ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
-					console.log("image updated!")
-					// Shift over letter length plus small margin
+					latest_letter.src = './EccoFont/' + letter + '.png';					
+
+					if (latest_letter.complete) {
+						// If image has loaded, display it
+						// Previously used characters seem to go here, while newly used ones aren't ready
+						ctx.drawImage(latest_letter, x_pos, y_pos, latest_letter.width, latest_letter.height);
+					} else {
+						// If not, wait for it to load, then display it
+						// For some reason, they're shifted down and over, so include small adjustment
+						latest_letter.onload = function () {
+							ctx.drawImage(latest_letter, (x_pos - 2), (y_pos - y_margin), latest_letter.width, latest_letter.height);
+						};
+					}
+
 					x_pos += latest_letter.width + 2;
+				
+					// console.log(latest_letter);
+					// Shift over letter length plus small margin
+					
 				} else {
-					document.getElementById("error").innerHTML="I'm sorry, but " + letter + " is not a valid character";
+					document.getElementById("error").innerHTML = "I'm sorry, but " + letter + " is not a valid character";
 				}
 			}
 		}
 		// Shift down a row
 		row_num++;
-		console.log("I did stuff")
+		// console.log("Finished line");
 		y_pos += y_margin;
 	}
 }
