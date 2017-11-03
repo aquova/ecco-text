@@ -1,3 +1,7 @@
+h1 {
+    text-align: center;
+}
+
 .navbar {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -15,4 +19,8 @@
 
 .container-fluid {
 	padding: 70px 50px;
+}
+
+#error {
+    text-align: center;
 }
