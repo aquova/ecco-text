@@ -55,10 +55,10 @@ function drawEcco() {
 					} else if (letter == '?') { // If letter is a ?
 						letter = 'QUESTION';
 					}
-					
+
 					// Convert letter into corresponding image, paste onto background
 					var latest_letter = new Image();
-					latest_letter.src = './EccoFont/' + letter + '.png';					
+					latest_letter.src = './EccoFont/' + letter + '.png';
 
 					if (latest_letter.complete) {
 						// If image has loaded, display it
@@ -73,10 +73,10 @@ function drawEcco() {
 					}
 
 					x_pos += latest_letter.width + 2;
-				
+
 					// console.log(latest_letter);
 					// Shift over letter length plus small margin
-					
+
 				} else {
 					document.getElementById("error").innerHTML = "I'm sorry, but " + letter + " is not a valid character";
 				}
