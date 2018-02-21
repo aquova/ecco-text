@@ -40,7 +40,7 @@ function drawEcco() {
 	var y_pos = 132 - (lines.length * Math.floor(y_margin / 2));
 	for (var row of lines){
 		// Finds X starting position
-		var x_pos = 152 - (row.length * Math.floor(x_margin / 2));
+		var x_pos = 160 - (row.length * Math.floor(x_margin / 2));
 		for (var letter of row){
 			if (letter == " "){ // If letter is a space
 				x_pos += x_margin;
