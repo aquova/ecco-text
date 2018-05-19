@@ -1,8 +1,12 @@
 // Ecco the Dolphin Text Generator
-// Written by Austin Bricker, 2017
+// Written by Austin Bricker, 2017-2018
 // Dynamically generates a .png image of entered text in the style of Ecco the Dolphin
 
-// Generates canvas
+// Letters of atypical width. All others not listed are 14 px wide
+// These values are the letter sprite's width, plus a 2 px buffer
+var unusualLetters = {"M": 24, "W": 24, "X": 18};
+
+// Generates canvasj
 var canvas = document.getElementById('eccoCanvas');
 ctx = canvas.getContext('2d');
 
@@ -10,9 +14,11 @@ const max_rows = 18;
 const x_margin = 16;
 const y_margin = 26;
 
+const bkg_width = 320;
+const bkg_height = 240;
+
 var img = new Image();
 img.src = "./EccoBackground.png";
-// var img = document.getElementById('eccoBkg');
 var text = document.getElementById('eccoText');
 
 // Update text with every keystroke
@@ -29,20 +35,20 @@ function drawEcco() {
 
 	// Separate text into lines of proper length
 	var text = document.getElementById('eccoText').value;
-	// console.log("Read text: " + text);
 	text = text.toUpperCase();
 	var lines = setLines(ctx, text, max_rows, x_margin, y_margin);
-	// console.log("Lines: " + lines);
 	var valid_char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.,'?:-".split('');
 	var row_num = 0;
+
 	// Finds Y starting position
 	// Needs to be offset of midpoint by number of lines
 	var y_pos = 132 - (lines.length * Math.floor(y_margin / 2));
 	for (var row of lines){
 		// Finds X starting position
-		var x_pos = 160 - (row.length * Math.floor(x_margin / 2));
+		var x_pos = centerText(row);
 		for (var letter of row){
-			if (letter == " "){ // If letter is a space
+			// If letter is a space
+			if (letter == " "){ 
 				x_pos += x_margin;
 			} else {
 				// Check if letter is one of the usable characters
@@ -72,11 +78,8 @@ function drawEcco() {
 						};
 					}
 
-					x_pos += latest_letter.width + 2;
-
-					// console.log(latest_letter);
 					// Shift over letter length plus small margin
-
+					x_pos += latest_letter.width + 2;
 				} else {
 					document.getElementById("error").innerHTML = "I'm sorry, but " + letter + " is not a valid character";
 				}
@@ -89,6 +92,7 @@ function drawEcco() {
 	}
 }
 
+// Separates a phrase into lines that will fit on a screen's width
 function setLines(context, text, maxWidth, xMargin, yMargin) {
 	var words = text.split(" ");
 	var new_rows = [];
@@ -110,4 +114,17 @@ function setLines(context, text, maxWidth, xMargin, yMargin) {
 		}
 	}
 	return new_rows;
+}
+
+// Calculates the initial x offset needed to center a row
+function centerText(row) {
+	c = bkg_width / 2;
+	for (var letter of row) {
+		if (letter in unusualLetters) {
+			c -= Math.floor(unusualLetters[letter] / 2);
+		} else {
+			c -= x_margin / 2;
+		}
+	}
+	return c;
 }
