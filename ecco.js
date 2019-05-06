@@ -1,5 +1,5 @@
 // Ecco the Dolphin Text Generator
-// Written by Austin Bricker, 2017-2018
+// Written by Austin Bricker, 2017-2019
 // Dynamically generates a .png image of entered text in the style of Ecco the Dolphin
 
 // Letters of atypical width. All others not listed are 14 px wide
@@ -29,6 +29,8 @@ img.onload = function() {
 }
 
 function drawEcco() {
+	// Remove error message on new key
+	document.getElementById("error").innerHTML = ""
 	// Clear, redraw background
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -48,7 +50,7 @@ function drawEcco() {
 		var x_pos = centerText(row);
 		for (var letter of row){
 			// If letter is a space
-			if (letter == " "){ 
+			if (letter == " "){
 				x_pos += x_margin;
 			} else {
 				// Check if letter is one of the usable characters
@@ -93,7 +95,8 @@ function drawEcco() {
 }
 
 // Separates a phrase into lines that will fit on a screen's width
-function setLines(context, text, maxWidth, xMargin, yMargin) {
+// "context" needs to be included in this function. I have no idea why.
+function setLines(context, text, maxWidth) {
 	var words = text.split(" ");
 	var new_rows = [];
 	var new_line = words[0];
